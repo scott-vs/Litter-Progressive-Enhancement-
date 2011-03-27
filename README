@@ -1,6 +1,6 @@
 Litter is a simple cat-themed parody of Twitter to demonstrate my coding ability.
 
-The goal of Litter was to create a fully functional web appellation without the use of any libraries or frameworks. It's just pure and basic PHP and JavaScript here.
+This version is built on top of the JQuery version, but has been modified to adhere to the “Progressive Enhancement” philosophy of web development. Users have the options of disabling cookies, CSS, and / or JavaScript while still being able to utilize core functionality of the application.
 
 The code is open sourced for demonstration purposes only. Please download, play around, and make suggestions to me if you'd like, but I am not looking for anyone else to contribute to the code.
 
