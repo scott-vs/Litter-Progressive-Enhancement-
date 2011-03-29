@@ -11,7 +11,7 @@ $(document).ready(function(){
 	if ($('#setup_litter').length != 0){
 		$('#setup_litter').html("Setting up your Litter demo...");
 		
-		$.ajax({url:"createNewSession.php",
+		$.ajax({url:"createNewSession.php?ajax=true",
 				success:function(result){
 					if (result == "success"){
 						$('#setup_litter').html('<a href="./index.php?cookie=true">Click here to launch Litter!</a>'); 
@@ -67,7 +67,7 @@ $(document).ready(function(){
 				  $("#txt_box").val("");
 				  $("#reply_to").html();
 				  $("#top_litt").html(response.id.substr(1));
-				  //updateCharLimit();
+				  updateCharLimit();
 				  var newEl = $('<div></div>').html(response.text).hide();
 				  $('#litt_space').prepend(newEl);
 			      newEl.slideDown("slow");

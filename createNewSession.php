@@ -44,6 +44,7 @@ $id = rand(100000,999999);
 $inTwoHours = time() + 60 * 60 * 2;
 
 setcookie('litterID', $id, $inTwoHours); 
+$LITTER_ID = $id;
 setcookie("litterPhase", 0, $inTwoHours);
 mysql_query("INSERT INTO tolkens (litter_id, expires) VALUES (".$id.", ".$inTwoHours.")",$sql);
 $_SESSION['expires'] = $inTwoHours;
@@ -113,5 +114,8 @@ $mimi->saveToDB($sql,$id);
 
 mysql_close($sql); 
 
-echo("success"); 
+if (isset ($_GET['ajax']))
+	echo("success"); 
+else
+	header( 'Location: '.encodeURL('./index.php') ) ;
 ?>

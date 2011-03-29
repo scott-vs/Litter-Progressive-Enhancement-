@@ -11,6 +11,7 @@
 
 	// Save settings on form submittion, then bounce back home.
 	if ($_POST["formSubmited"]){
+		require_once 'variables.php';
 		require_once 'utils.php';
 		require_once 'classes/User.php';
 		
@@ -22,7 +23,7 @@
 		if ($web != "" && substr($web, 0,7) != "http://")
 			$web = "http://".$web;
 		
-		$me = new User($_COOKIE['litterID']);
+		$me = new User($LITTER_ID);
    		$me->loadInfoFromDB();
 		$settings = array (	
 						"realName" => $_POST["rname"],
@@ -33,11 +34,11 @@
 						"website" => $web
 			);
 		$me->setSettings($settings);
-		$me->saveToDB($sql,$_COOKIE['litterID']);
+		$me->saveToDB($sql,$LITTER_ID);
 		
 		mysql_close($sql);
 		
-		header( 'Location: ./' ) ;
+		header( 'Location: '.encodeURL('./index.php' )) ;
 	}
 	$title = "User Settings";
 	require 'pages/header.php'; 
@@ -48,8 +49,8 @@
 
 <div id="settings">
     <h2>Settings</h2>
-	<form action="settings.php" method="post">
-		Real Name: <input type="text" name="rname" value="<?php echo($me->getRealName());?>" /><br />
+	<form action="<?php echo(encodeURL('settings.php','',true));?>" method="post">
+		<p>Real Name: <input type="text" name="rname" value="<?php echo($me->getRealName());?>" /><br />
 		Bio: <input type="text" name="bio" value="<?php echo($me->getBio());?>" /><br />
 		Location: <input type="text" name="location" value="<?php echo($me->getLocation());?>" /><br />
 		Favorite Toy: <input type="text" name="toy" value="<?php echo($me->getToy());?>" /><br />
@@ -57,7 +58,7 @@
 		Website: <input type="text" name="website" value="<?php echo($me->getWebsite());?>" /><br />
 		<input type="hidden" name="formSubmited" value="true" />
 		<button type="submit" >save</button>
-		<button type="button" onclick="window.location.href='./'">cancel</button>
+		<a href="<?php echo(encodeURL('./index.php','',true));?>">cancel</a></p>
 	</form>
 </div>
  

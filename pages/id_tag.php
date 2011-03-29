@@ -10,13 +10,14 @@
  */
 	require_once 'utils.php';
    	require_once 'classes/Litt.php';
+   	require_once 'variables.php';
    	
    	if (!$sql){
    		$sql = openSQL();
    		mysql_select_db("litter", $sql);
    	}
-   	
-   	$me = new User($_COOKIE["litterID"]);
+ 
+   	$me = new User($LITTER_ID);
     $me->loadInfoFromDB();
     
     $myName = $me->getRealName();
@@ -24,7 +25,9 @@
 ?>
 
 <div id="id_tag">
-	<img src="<?php echo($myImage);?>"/> 
+	<!--  add in JS
+		<img src="<?php echo($myImage);?>" /> 
+	-->
 	<p>Welcome back to Litter, <?php echo($myName);?>!<br />
-	<a href="./settings.php">Settings</a> | <a href="./signOut.php" id="signMeOff">Sign Out</a></p>
+	<a href="<?php echo(encodeURL('./settings.php', '', true));?>">Settings</a> | <a href="./signOut.php" id="signMeOff">Sign Out</a></p>
 </div>

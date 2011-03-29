@@ -27,7 +27,8 @@ class User{
 	}
 	
 	function loadInfoFromDB(){
-		$userTbl = "users_".$_COOKIE['litterID'];
+		global $LITTER_ID;
+		$userTbl = "users_".$LITTER_ID;
 		
 		if (!$sql){
 			$sql = openSQL();

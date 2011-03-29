@@ -10,6 +10,7 @@
  */
 require_once 'classes/User.php';
 require_once 'classes/BigInt.php';
+require_once 'variables.php';
 class Litt {
 	protected $litt_id;
 	protected $text;
@@ -68,9 +69,9 @@ class Litt {
 		$text = $this->fancyText();
 		
 		$s = "	<div class='litt' $title >
-					<img src='$picture'  uid='".$this->user->getID()."'  />
+					<img src='$picture'  title='".$this->user->getID()."' alt='$name' />
 					<div class='litt_top'>
-						<div class='litt_username' uid='".$this->user->getID()."'  >
+						<div class='litt_username' title='".$this->user->getID()."'  >
 							$name:
 						</div>
 					</div>
@@ -78,8 +79,8 @@ class Litt {
 					 $text
 					</div>
 					<div class='litt_reply'>
-						<a href='javascript:void(0)' replyTo = '$name' littid ='l".$this->litt_id."'>reply</a>
-					</div>
+						<!-- &&&&&& add in JS <a href='javascript:void(0)' title = '$name,l".$this->litt_id."'>reply</a> -->
+					</div><br/>
 				</div>
 			";
 		return $s;
@@ -136,11 +137,12 @@ class Litt {
 	}
 	
 	public static function createNewLitt($user, $text, $replyTo){
+		global $LITTER_ID;
 		if (!$sql){
 			$sql = openSQL();
 			mysql_select_db("litter", $sql);
 		}
-		$littTbl = "litt_".$_COOKIE["litterID"];
+		$littTbl = "litt_".$LITTER_ID;
 		$q ="SELECT litt_id FROM $littTbl ORDER BY litt_id DESC LIMIT 0,1";
 		$result = mysql_query($q,$sql);
 		$myID = mysql_fetch_row($result);

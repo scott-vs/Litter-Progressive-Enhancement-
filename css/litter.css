@@ -37,6 +37,12 @@ body {
 	margin-top:170px;
 }
 
+#thisIsYou {
+	width:150px;
+	float:right; 
+	margin-left:10px;
+}
+
 #settings input {
 	width: 400px;
 	right:250px;

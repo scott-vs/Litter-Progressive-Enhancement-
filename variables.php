@@ -15,8 +15,34 @@
 	$DB_USERNAME = 'root';
 	$DB_PASSWORD = 'root';
 	
+	// Set global variables
+	$COOKIES = "n";
+	$CSS = "n";
+	$JS = "n";
+	$LITTER_ID = "n";
+	
+	if ($_GET['ck'] == -1) $BROWSER_NO_COOKIES = true;
+	
+	if (isset ($BROWSER_NO_COOKIES) || isset($_GET['ck'])) {
+		$COOKIES = FALSE;
+		$CSS = (isset($_GET['css'])) ? ($_GET['css'] == 1) : true;
+	  	$JS = (isset($_GET['js'])) ? ($_GET['js'] == 1) : true;
+	  	$LITTER_ID = (isset($_GET['id'])) ? $_GET['id'] : 'null';
+	  	
+	} else{
+		$COOKIES = true;
+		$CSS = (isset($_COOKIE['css'])) ? ($_COOKIE['css'] == 1) : true;
+	  	$JS = (isset($_COOKIE['js'])) ? ($_COOKIE['js'] == 1) : true;
+	  	$LITTER_ID = (isset($_COOKIE['litterID'])) ? $_COOKIE['litterID'] : 'null';
+	}
+
+	$COOKIES = false;
+	$JS = false;
+	$CSS = false;
+	
+	
 	// Download link for code source.
-	$SRC_URL = '';
+	$SRC_URL = 'https://github.com/scott-vs/Litter-Progressive-Enhancement-';
 	
 	// Inital set of users to be imported from Twitter.
 	$USER_LIST = array(	"sockington",
