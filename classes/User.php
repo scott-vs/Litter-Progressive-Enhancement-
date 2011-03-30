@@ -140,7 +140,7 @@ class User{
 				User Info: 
 			</div>
 			<div id="user_tag">
-				<img src="'.$this->getLargeImageUrl().'" width=50 alt="user picture" />
+				<img src="'.$this->getLargeImageUrl().'" width="50" alt="user picture" />
 				'.$this->userName.'
 				<div id="user_bio">
 		      		 '.$this->bio.'<br />
@@ -161,8 +161,8 @@ class User{
 	private function printUserPaneDetail($name, $value){
 		$s = "";
 		if ($value != null && $value != ""){
-			$s .= '<span class="deet_title">'.$name.': ';
-			$s .= ''.$value.'</span><br/>';
+			$s .= '<span class="deet_title">'.$name.':</span> ';
+			$s .= '<span class="deet_value">'.$value.'<br/></span>';
 		}
 		return $s;
 	}

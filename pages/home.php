@@ -72,10 +72,13 @@
 	    ?>
 	    <a id="loadNext" href="<?php echo(encodeURL('index.php', 'start='.($num + 20), true));?>"><!-- &&&&& fix in JS Load Next 10 -->Load Next 20</a>
    	</div>
+
+<div>
 <input id="litter_id" type="hidden" value="<?php echo($LITTER_ID);?>" />
 <input id="ajax_newLitts" type="hidden" value="<?php echo(encodeURL('getLitts.php','before='.$topID,true));?>" />
 <input id="ajax_oldLitts" type="hidden" value="<?php echo(encodeURL('getLitts.php','after='.$littID,true));?>" />
 <input id="ajax_postNewLitts" type="hidden" value="<?php echo(encodeURL('newLitt.php','',true));?>" />
 <input id="reply_to" type="hidden" value="" />
+</div>
 
 <?php require 'pages/footer.php'; ?>

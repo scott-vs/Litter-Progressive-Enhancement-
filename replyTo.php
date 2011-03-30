@@ -30,8 +30,8 @@
 	$q ="SELECT * FROM $littTbl, $userTbl WHERE $littTbl.user_id = $userTbl.user_id AND $littTbl.litt_id = ".$_GET['rid'];
 	$result = mysql_query($q,$sql);
 	$row = mysql_fetch_array($result);
-	debug($q);
-	echo("<img src='".$row["image_URL"]."'  alt='' />@".$row["user_name"].": ".$row["text"]);
+
+	echo("<img src='".$row["image_URL"]."'  alt='' /> ".$row["text"]);
 ?>
 
 	<form id="new_litt_form" action="<?php echo(encodeURL('newLitt.php','',true)); ?>" method="post">
@@ -40,6 +40,7 @@
 		   	<span id="tiny_text"></span>
 		   	<input name="reply" type="hidden" value="l<?php echo($_GET['rid']);?>" />
 			<input id="new_litt" type="submit" value="Reply" />
+			<a href="<?php echo(encodeURL('./index.php','',true));?>">cancel</a>
 		</p>
 	</form>
 

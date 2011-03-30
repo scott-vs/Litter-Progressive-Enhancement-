@@ -71,10 +71,10 @@ class Litt {
 		$s = "	<div class='litt' $title >
 					<span>
 						<img src='$picture'  alt='$name' />
-						<input type='hidden' value='".$this->user->getID()."'>
+						<input type='hidden' value='".$this->user->getID()."' />
 					</span>
 					<div class='litt_top'>
-						<span class='litt_username' ><input type='hidden' value='".$this->user->getID()."'>
+						<span class='litt_username' ><input type='hidden' value='".$this->user->getID()."' />
 							$name:
 						</span>
 					</div>
@@ -83,7 +83,7 @@ class Litt {
 					</div>
 					<div class='litt_reply'>
 						 <a href='".encodeURL("replyTo.php", "rid=".$this->litt_id, true)."'>reply</a> 
-						 <input type='hidden' value='".$this->litt_id.",".$name."'>
+						 <input type='hidden' value='".$this->litt_id.",".$name."' />
 					</div><br/>
 				</div>
 			";
@@ -95,6 +95,7 @@ class Litt {
 		$s = preg_replace("/(http:\/\/[^\s]+)/", "<a href=\"$1\">$1</a>", $this->text);
 		$s = preg_replace("/(@[^\s]+)/", "<span style='color:darkred;'>$1</span>", $s);
 		$s = preg_replace("/(#[^\s]+)/", "<span style='color:green'>$1</span>", $s);
+		$s = str_replace("&","&amp;", $s);
 		return $s;
 	}
 	

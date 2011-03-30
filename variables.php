@@ -34,12 +34,7 @@
 		$CSS = (isset($_COOKIE['css'])) ? ($_COOKIE['css'] == 1) : true;
 	  	$JS = (isset($_COOKIE['js'])) ? ($_COOKIE['js'] == 1) : true;
 	  	$LITTER_ID = (isset($_COOKIE['litterID'])) ? $_COOKIE['litterID'] : 'null';
-	}
-
-	$COOKIES = false;
-	$JS = true;
-	$CSS = false;
-	
+	}	
 	
 	// Download link for code source.
 	$SRC_URL = 'https://github.com/scott-vs/Litter-Progressive-Enhancement-';

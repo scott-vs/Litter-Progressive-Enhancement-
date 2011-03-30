@@ -40,7 +40,8 @@ if (isset($_GET['login'])){
 
 
 if($LITTER_ID != "null"){
-	$mess = 'Your id is '.$LITTER_ID.'. Remember that to log back in.';
+	if ($COOKIES == false)
+		$mess = 'Your id is '.$LITTER_ID.'. Remember that to log back in.';
 	require_once 'pages/home.php';
 }else if (isset($_GET["check"])){
 	if (!isset($_COOKIE['test']))

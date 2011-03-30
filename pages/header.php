@@ -17,7 +17,8 @@
 <div id="ph_bar">
 	<?php 
 		require_once 'utils.php';
-	  echo($mess.'<br/>');
+	  if (isset($mess))
+	  	echo($mess.'<br/>');
 	  if (isset($BROWSER_NO_COOKIES))
 	  	echo ("cookies disabled | ");
 	  else {

@@ -25,7 +25,7 @@
 ?>
 
 <div id="id_tag">
-	<p><img src="<?php echo($myImage);?>" width=50 alt="user picture" /> 
+	<p><img src="<?php echo($myImage);?>" width="50" alt="user picture" /> 
 	Welcome back to Litter, <?php echo($myName);?>!<br />
 	<a href="<?php echo(encodeURL('./settings.php', '', true));?>">Settings</a> | <a href="./signOut.php" id="signMeOff">Sign Out</a></p>
 </div>
