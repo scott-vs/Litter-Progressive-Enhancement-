@@ -15,7 +15,6 @@
 	
 	$return;
 	$return->status = "ok";
-	
 	($_POST["reply"]) ? $replyTo = new BigInt(substr($_POST["reply"], 1)) : $replyTo = 0;
 	
 	$me = new User($LITTER_ID);
@@ -23,10 +22,10 @@
 	
 	$newlitt = Litt::createNewLitt($me, $_POST["text"], $replyTo);
 	$newlitt->saveToMasterDB($sql,$LITTER_ID);
-	$return->id = "l".$newlitt->getID();
+	$return->id = encodeURL('getLitts.php','before='.$newlitt->getID());
 	$return->text = $newlitt->printLitt();
 	
-	if (isset($_GET['ajax']))
+	if (isset($_POST['ajax']))
 		echo(json_encode($return));
 	else 
 		header( 'Location: '.encodeURL('./index.php') ) ;

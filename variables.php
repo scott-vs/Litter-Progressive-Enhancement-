@@ -37,7 +37,7 @@
 	}
 
 	$COOKIES = false;
-	$JS = false;
+	$JS = true;
 	$CSS = false;
 	
 	

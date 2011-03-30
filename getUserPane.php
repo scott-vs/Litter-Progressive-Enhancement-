@@ -12,8 +12,8 @@
 	require_once 'classes/User.php';
 	
 	$return;
-	if ($_GET["id"]){
-		$myID = $_GET["id"];
+	if ($_GET["uid"]){
+		$myID = $_GET["uid"];
 		
 		$sql = openSQL();
    		mysql_select_db("litter", $sql);	

@@ -12,7 +12,7 @@
 
 class BigInt{
 	private $array;
-	private $DEFAULT_SPLIT = 10;
+	private $DEFAULT_SPLIT = 6;
 	
 	function __construct($num, $split = -1){
 		if ($split == -1) $split = $this->DEFAULT_SPLIT;

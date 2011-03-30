@@ -69,17 +69,21 @@ class Litt {
 		$text = $this->fancyText();
 		
 		$s = "	<div class='litt' $title >
-					<img src='$picture'  title='".$this->user->getID()."' alt='$name' />
+					<span>
+						<img src='$picture'  alt='$name' />
+						<input type='hidden' value='".$this->user->getID()."'>
+					</span>
 					<div class='litt_top'>
-						<div class='litt_username' title='".$this->user->getID()."'  >
+						<span class='litt_username' ><input type='hidden' value='".$this->user->getID()."'>
 							$name:
-						</div>
+						</span>
 					</div>
 					<div class='litt_text'>
 					 $text
 					</div>
 					<div class='litt_reply'>
-						<!-- &&&&&& add in JS <a href='javascript:void(0)' title = '$name,l".$this->litt_id."'>reply</a> -->
+						 <a href='".encodeURL("replyTo.php", "rid=".$this->litt_id, true)."'>reply</a> 
+						 <input type='hidden' value='".$this->litt_id.",".$name."'>
 					</div><br/>
 				</div>
 			";
@@ -95,13 +99,14 @@ class Litt {
 	}
 	
 	private function getReplyText(){
+		global $LITTER_ID;
 		if (!$sql){
 			$sql = openSQL();
 			mysql_select_db("litter", $sql);
 		}
 		
-		$littTbl = "litt_".$_COOKIE["litterID"];
-		$userTbl = "users_".$_COOKIE["litterID"];
+		$littTbl = "litt_".$LITTER_ID;
+		$userTbl = "users_".$LITTER_ID;
 		
 		$q ="SELECT * FROM $littTbl, $userTbl WHERE $littTbl.user_id = $userTbl.user_id AND $littTbl.litt_id = ".$this->reply;
 		$result = mysql_query($q,$sql);

@@ -23,8 +23,8 @@
 		$return->status="ok";
 		$top = $_GET['before'];
 		
-		$littTbl = "litt_".$_COOKIE['litterID'];
-	   	$userTbl = "users_".$_COOKIE['litterID'];
+		$littTbl = "litt_".$LITTER_ID;
+	   	$userTbl = "users_".$LITTER_ID;
 	   	$q = "SELECT * FROM $littTbl, $userTbl WHERE $littTbl.user_id = $userTbl.user_id AND $littTbl.litt_id > $top ORDER BY litt_id DESC";
 	   	$result = mysql_query($q,$sql);
 		$isFirst = TRUE;
@@ -37,7 +37,7 @@
 	   		}
 				$s .= $l->printLitt();
 		}
-		$return->top = $top;
+		$return->top = encodeURL('getLitts.php','before='.$top);
 		$return->text = $s;
 		
 	} else if ($_GET['after']){
@@ -45,8 +45,8 @@
 		$return->status="ok";
 		$bottom = $_GET['after'];
 		
-		$litt = "litt_".$_COOKIE['litterID'];
-	   	$user = "users_".$_COOKIE['litterID'];
+		$litt = "litt_".$LITTER_ID;
+	   	$user = "users_".$LITTER_ID;
 	   	$result = mysql_query("SELECT * FROM $litt, $user WHERE $litt.user_id = $user.user_id AND $litt.litt_id < $bottom ORDER BY litt_id DESC LIMIT 0, 10", $sql);
 
 		$s = "";
@@ -54,7 +54,7 @@
 	   		$l = Litt::importFromDB($row);
 	   		$s .= $l->printLitt();
 		}
-		$return->bottom = $l->getID();
+		$return->bottom = encodeURL('getLitts.php','after='.$l->getID());
 		$return->text = $s;
 		
 	} else {

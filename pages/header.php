@@ -6,8 +6,8 @@
 	<?php 
 		require_once 'variables.php';
 		if ($JS) 
-			echo('<script src="js/jquery-1.5.1.min.js"></script>
-				  <script src="js/litter.js"></script>');
+			echo('<script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
+				  <script type="text/javascript" src="js/litter.js"></script>');
 		if ($CSS)
 			echo('<link type="text/css" rel="stylesheet" href="css/litter.css" /> ');
 	

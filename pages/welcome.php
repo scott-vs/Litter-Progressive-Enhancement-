@@ -21,6 +21,7 @@
 	<p>This demo is set up from scratch specifically for you, so <strong>play around</strong> with it as much as you like. No one else will be able to see what you write, and everything will be <strong>automatically deleted</strong> off my database after two hours, or after you sign off of Litter.</p>
 	<p>And of course, feel free to <strong>download</strong> the complete source code <a href="<?php echo($SRC_URL);?>">here</a>.</p>
 	<div id="setup_litter">
+		<input type="hidden" id="ajax_setup" value="<?php echo(encodeURL('createNewSession.php','ajax=true',true));?>" />
 		<form action="<?php echo(encodeURL('index.php','login=true',true));?>" method="post">
 			<p>ID Number:
 			<input id='id_number' name='id_number' type="text" />

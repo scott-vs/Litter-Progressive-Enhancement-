@@ -13,7 +13,6 @@
 	
 	//
 	function encodeURL($url, $extraParams = "", $w3c = false){
-		
 		global $COOKIES, $CSS, $JS, $LITTER_ID, $BROWSER_NO_COOKIES;
 		$url .= "?"; 
 		if (isset($BROWSER_NO_COOKIES) || $COOKIES == FALSE){

@@ -115,7 +115,7 @@ $mimi->saveToDB($sql,$id);
 mysql_close($sql); 
 
 if (isset ($_GET['ajax']))
-	echo("success"); 
+	echo('<a href="'.encodeURL('./index.php').'">Click here to launch Litter!</a>'); 
 else
 	header( 'Location: '.encodeURL('./index.php') ) ;
 ?>

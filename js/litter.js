@@ -9,92 +9,87 @@ $(document).ready(function(){
 	
 	// Setup Litter on Welcome page.
 	if ($('#setup_litter').length != 0){
+		var u = $('#ajax_setup').val();
 		$('#setup_litter').html("Setting up your Litter demo...");
 		
-		$.ajax({url:"createNewSession.php?ajax=true",
-				success:function(result){
-					if (result == "success"){
-						$('#setup_litter').html('<a href="./index.php?cookie=true">Click here to launch Litter!</a>'); 
-					}
-				}
-		});
+		$('#setup_litter').load(u);
 	} else 
 		setInterval (getNewLitts, 10000);
 	
 	// AJAX call to get new litts.
 	function getNewLitts(){
-		var top = $("#top_litt").html();
-		
 		var cb = function(response){
 			if (response.status == "ok" && response.text != ""){
 				var newEl = $('<div></div>').html(response.text).hide();
 				$('#litt_space').prepend(newEl);
 				newEl.slideDown("slow");
-				$('#top_litt').html(response.top);
+				$('#ajax_newLitts').val(response.top);
 			}
 		}
 		
-		$.ajax({url:"getLitts.php?before="+top,success:cb, dataType:"json"});
+		$.ajax({url:$('#ajax_newLitts').val(),success:cb, dataType:"json"});
 	}
 	
 	// Load the next 10 Litts at bottom of screen.
-	$("#loadNext10").click(function(){
-		var bottom = $("#bottom_litt").html();
-		
+	$("#loadNext").html("Load Next 10");
+	$("#loadNext").attr('href', 'javascript:void(0)');
+	$("#loadNext").click(function(){
 		var cb = function(response){
 			if (response.status == "ok"){
 				var newEl = $('<div></div>').html(response.text).hide();
 				$('#litt_space').append(newEl);
 				newEl.slideDown("slow");
-				$("#bottom_litt").html(response.bottom);
+				$("#ajax_oldLitts").val(response.bottom);
 			}
 		}
 		
-		$.ajax({url:"getLitts.php?after="+bottom,success:cb, dataType:"json"});
+		$.ajax({url:$('#ajax_oldLitts').val(),success:cb, dataType:"json"});
 	});
 	
 	// POST a new litt to the server
+	$("#new_litt_form").attr('action', 'javascript:void(0)');
 	$('#new_litt').click(function(){
 		var txt = $("#txt_box").val();
-		var replyTo = $("#reply_to").html();
+		var replyTo = $("#reply_to").val();
 		
 		if (txt == "") return;
 		
-		var params = "text="+txt+"&reply="+replyTo;
+		var params = "text="+txt+"&reply="+replyTo+"&ajax=true";
 	
 		var cb = function(response){
 			  if (response.status == "ok"){
 				  $("#txt_box").val("");
-				  $("#reply_to").html();
-				  $("#top_litt").html(response.id.substr(1));
-				  updateCharLimit();
+				  $("#reply_to").val();
+				  $('#ajax_newLitts').val(response.id);
 				  var newEl = $('<div></div>').html(response.text).hide();
 				  $('#litt_space').prepend(newEl);
 			      newEl.slideDown("slow");
+			      updateCharLimit();
 			  }
 			
 		}
 		
-		$.ajax({type:"POST",url:"newLitt.php",data:params,success:cb, dataType:"json"});
+		$.ajax({type:"POST",url:($("#ajax_postNewLitts").val()),data:params,success:cb, dataType:"json"});
 	});
 	
 	// When user clicks picture, show that user's info.
 	var userPane = function(){
-		var userId = $(this).attr('uid');
+		var userId = $(this).find('input').val();
 		if (userId){
 			var cb = function(response){
 				if (response.status == "ok"){
 					$("#user_pane").html(response.text);
 				}
 			}
-			$.ajax({url:"getUserPane.php?id="+userId,success:cb, dataType:"json"});
+			$.ajax({url:($('#ajax_getuserpane').val()+"&uid="+userId),success:cb, dataType:"json"});
 		}
 	};
-	$('#user_list').delegate('img', 'click', userPane);
-	$('#litt_space').delegate('img,div', 'click', userPane);
+	$('#user_list').delegate('span', 'click', userPane);
+	$('#litt_space').delegate('span,.litt_username', 'click', userPane);
 	
 	// Update the "140 characters left" message.
 	$("#txt_box").keyup(updateCharLimit);
+	updateCharLimit();
 	function updateCharLimit(){
 		var txt = document.getElementById("txt_box");
 		var tinyText = document.getElementById("tiny_text");
@@ -117,12 +112,14 @@ $(document).ready(function(){
 	}
 	
 	// Reply to Litt.
-	$('#litt_space').delegate('a', 'click', function(){
-		var id = $(this).attr('littid');
+	$('#litt_space').delegate('.litt_reply', 'click', function(){
+		var id = $(this).find('input').val();
 		if (id){
-			var replyTo = $(this).attr('replyto');
-			var txt = document.getElementById("txt_box");
-			$('#reply_to').html(id);
+			$(this).find('a').attr("href","javascript:void(0)");
+			var foo = id.split(",");
+			id = foo[0];
+			var replyTo = foo[1];
+			$('#reply_to').val('l'+id);
 			$('#txt_box').val("@"+ replyTo + " " + $('#txt_box').val());
 			updateCharLimit();
 		}

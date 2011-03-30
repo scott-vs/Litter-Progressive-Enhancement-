@@ -21,15 +21,13 @@
 ?>
 	
 	<?php require 'pages/id_tag.php'; ?>
-	<div id="side_bar"> 
-	<!-- &&&&&& add in JS  
-    	<div id="user_pane"> 
-    		<?php echo($me->printUserPane()); ?>
-    	</div>
-    	<div id="user_list"> 
-    		<?php require_once 'pages/topUsers.php';?>
-    	</div>
-    -->
+	<div id="side_bar">
+		<div id="user_pane">  
+			<?php echo($me->printUserPane()); ?>
+		</div>
+		<div id="user_list"> 
+			<?php require_once 'pages/topUsers.php';?>
+		</div>
     </div>
     <div id="home">
 	    <div id="the_scoop">
@@ -38,7 +36,7 @@
 		    <form id="new_litt_form" action="<?php echo(encodeURL('newLitt.php','',true)); ?>" method="post">
 		    	<p>
 		    		<textarea id="txt_box" name="text" rows="2" cols="20" ></textarea> <br/>
-		    		<span id="tiny_text"><!-- &&&&&& add in JS 140 characters left. --></span>
+		    		<span id="tiny_text"></span>
 		   			<input id="new_litt" type="submit" value="Litt it!" />
 		   		</p>
 		    </form>
@@ -65,7 +63,6 @@
 				echo($l->printLitt());
 			}
 			$littID = $l->getID();
-			// &&&&&&& echo("<div id='bottom_litt' class='hidden_info'>$littID</div>");
 	    ?>
 	    </div>
 	    <?php 
@@ -75,5 +72,10 @@
 	    ?>
 	    <a id="loadNext" href="<?php echo(encodeURL('index.php', 'start='.($num + 20), true));?>"><!-- &&&&& fix in JS Load Next 10 -->Load Next 20</a>
    	</div>
-   	
+<input id="litter_id" type="hidden" value="<?php echo($LITTER_ID);?>" />
+<input id="ajax_newLitts" type="hidden" value="<?php echo(encodeURL('getLitts.php','before='.$topID,true));?>" />
+<input id="ajax_oldLitts" type="hidden" value="<?php echo(encodeURL('getLitts.php','after='.$littID,true));?>" />
+<input id="ajax_postNewLitts" type="hidden" value="<?php echo(encodeURL('newLitt.php','',true));?>" />
+<input id="reply_to" type="hidden" value="" />
+
 <?php require 'pages/footer.php'; ?>

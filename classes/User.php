@@ -136,14 +136,15 @@ class User{
 	
 	public function printUserPane(){
 		$user = $this->userName;
-		$s ='<div style="text-align:center">
-				'.$this->userName.'
+		$s ='<div>
+				User Info: 
 			</div>
 			<div id="user_tag">
+				<img src="'.$this->getLargeImageUrl().'" width=50 alt="user picture" />
+				'.$this->userName.'
 				<div id="user_bio">
 		      		 '.$this->bio.'<br />
 				</div>
-				<img src="'.$this->getLargeImageUrl().'" />
 			</div>
 			<div id="user_deets">
 		';
@@ -160,8 +161,8 @@ class User{
 	private function printUserPaneDetail($name, $value){
 		$s = "";
 		if ($value != null && $value != ""){
-			$s .= '<div class="deet_title">'.$name.':</div>';
-			$s .= '<div class="deet_value">'.$value.'</div>';
+			$s .= '<span class="deet_title">'.$name.': ';
+			$s .= ''.$value.'</span><br/>';
 		}
 		return $s;
 	}
