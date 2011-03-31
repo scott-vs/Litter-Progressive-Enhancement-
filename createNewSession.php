@@ -94,7 +94,7 @@ $settings = array (	"userName" => "Wild_Tiger",
 					"bgColor" => "#FFFFFF",
 					"bio" => "I'm Scott VonSchilling's tabby cat.",
 					"location" => "Princeton, NJ",
-					"imageUrl" => "http://scottvonschilling.com/tiger_normal.jpg"
+					"imageUrl" => "./images/tiger_normal.jpg"
 			);
 $tiger->setSettings($settings);
 $tiger->saveToDB($sql,$id);
@@ -107,7 +107,7 @@ $settings = array (	"userName" => "Classy_Mimi",
 					"bgColor" => "#FFFFFF",
 					"bio" => "I am NOT Scott VonSchilling's cat. Scott VonSchilling is my human.",
 					"location" => "Princeton, NJ",
-					"imageUrl" => "http://scottvonschilling.com/mimi_normal.jpg"
+					"imageUrl" => "./images/mimi_normal.jpg"
 			);
 $mimi->setSettings($settings);
 $mimi->saveToDB($sql,$id);

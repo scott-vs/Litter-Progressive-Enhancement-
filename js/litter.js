@@ -116,9 +116,9 @@ $(document).ready(function(){
 		var id = $(this).find('input').val();
 		if (id){
 			$(this).find('a').attr("href","javascript:void(0)");
-			var foo = id.split(",");
-			id = foo[0];
-			var replyTo = foo[1];
+			var s = id.split(",");
+			id = s[0];
+			var replyTo = s[1];
 			$('#reply_to').val('l'+id);
 			$('#txt_box').val("@"+ replyTo + " " + $('#txt_box').val());
 			updateCharLimit();

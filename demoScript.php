@@ -13,6 +13,9 @@ require_once 'variables.php';
 require_once 'classes/Litt.php';
 require_once 'classes/User.php';
 
+if ($COOKIES == false)
+	return;
+
 if (!$sql){
 	$sql = openSQL();
 	mysql_select_db("litter", $sql);
