@@ -22,13 +22,7 @@
 	<p>And of course, feel free to <strong>download</strong> the complete source code <a href="<?php echo($SRC_URL);?>">here</a>.</p>
 	<div id="setup_litter">
 		<input type="hidden" id="ajax_setup" value="<?php echo(encodeURL('createNewSession.php','ajax=true',true));?>" />
-		<form action="<?php echo(encodeURL('index.php','login=true',true));?>" method="post">
-			<p>ID Number:
-			<input id='id_number' name='id_number' type="text" />
-			<input type="submit" value="login" />
-			</p>
-		</form>
-		<p>No ID? <a href="<?php echo(encodeURL('./index.php',"setup=true", true));?>">Click here to set up Litter</a> 
+		<p><a href="<?php echo(encodeURL('./index.php',"setup=true", true));?>">Click here to set up Litter</a> 
 		</p>
 	</div>
 </div>

@@ -41,7 +41,7 @@ if (isset($_GET['login'])){
 
 if($LITTER_ID != "null"){
 	if ($COOKIES == false)
-		$mess = 'Your id is '.$LITTER_ID.'. Remember that to log back in.';
+		$mess = 'Your demo will end when you leave the site.';
 	require_once 'pages/home.php';
 }else if (isset($_GET["check"])){
 	if (!isset($_COOKIE['test']))
