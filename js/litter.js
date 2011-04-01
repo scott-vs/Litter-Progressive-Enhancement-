@@ -86,6 +86,8 @@ $(document).ready(function(){
 	};
 	$('#user_list').delegate('span', 'click', userPane);
 	$('#litt_space').delegate('span,.litt_username', 'click', userPane);
+	$('.user_picture,.litt_username,.clickable').css('cursor','pointer');
+	
 	
 	// Update the "140 characters left" message.
 	$("#txt_box").keyup(updateCharLimit);

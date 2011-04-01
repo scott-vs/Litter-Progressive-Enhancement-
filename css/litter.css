@@ -195,7 +195,6 @@ body {
 	margin:4px 4px 0px 4px;	
 	width: 48px;
 	height: 48px;
-	cursor:pointer;
 }
 
 
@@ -210,12 +209,10 @@ body {
 .litt img {
 	float: left;
 	margin: 5px;
-	cursor:pointer;
 }
 
 .litt_username {
 	font-size:90%;
-	cursor:pointer;
 }
 
 .litt_time {

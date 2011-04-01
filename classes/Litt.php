@@ -70,7 +70,7 @@ class Litt {
 		
 		$s = "	<div class='litt' $title >
 					<span>
-						<img src='$picture'  alt='$name' />
+						<img src='$picture' class='clickable' alt='$name' />
 						<input type='hidden' value='".$this->user->getID()."' />
 					</span>
 					<div class='litt_top'>
